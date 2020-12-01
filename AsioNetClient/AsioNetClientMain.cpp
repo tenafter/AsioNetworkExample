@@ -7,12 +7,15 @@
 #include "AuthContoroller.h"
 namespace po = boost::program_options;
 
-std::tuple<int, int, int, int> ProgramOptions(int argc, char* argv[])
+std::tuple<int, std::string, uint16_t, int, int, int> ProgramOptions(int argc, char* argv[])
 {
-	int exit{1}, clientCnt{10}, threadCnt{2}, interval{1000};
+	std::string ip{"127.0.0.1"};
+	int exit{1}, port{43234}, clientCnt{10}, threadCnt{2}, interval{1000};
 	po::options_description desc("Allowed options");
 	desc.add_options()
 		("help", "help message")
+		("ip", po::value<std::string>(), "server ip")
+		("port", po::value<uint16_t>(), "server port")
 		("clientCnt", po::value<int>(), "client connection count")
 		("threadCnt", po::value<int>(), "thread count")
 		("interval", po::value<int>(), "echo packet send interval milliseconds")
@@ -26,6 +29,14 @@ std::tuple<int, int, int, int> ProgramOptions(int argc, char* argv[])
 	}
 	else
 	{
+		if ( vm.count("ip") )
+		{
+			ip = vm["ip"].as<std::string>();
+		}
+		if ( vm.count("port") )
+		{
+			port = vm["port"].as<uint16_t>();
+		}
 		if ( vm.count("clientCnt") )
 		{
 			clientCnt = vm["clientCnt"].as<int>();
@@ -39,7 +50,7 @@ std::tuple<int, int, int, int> ProgramOptions(int argc, char* argv[])
 			interval = vm["interval"].as<int>();
 		}
 	}
-	return {exit, clientCnt, threadCnt, interval};
+	return {exit, ip, port, clientCnt, threadCnt, interval};
 }
 
 class ClientMonitor : public std::enable_shared_from_this<ClientMonitor>
@@ -64,10 +75,7 @@ public:
 
 	void Start()
 	{
-		//static asio::io_context ioc;
-		//asio::executor_work_guard work_guard(asio::make_work_guard(ioc));
 		workThread = std::thread([self = shared_from_this()]() {
-			//while (ioc.stopped() == false)
 			while ( self->isStopped == false )
 			{
 				std::this_thread::sleep_for(500ms);
@@ -88,8 +96,8 @@ public:
 					}
 				}
 				averageResponseMs = totalClients > 0 ? totalAverageResponeMs / totalClients : 0;
-				printf("Echo Info totalClients: %d, averageResponseMs: %lf, totalAverageResponeMs: %lf, totalEchoCount: %lld\n"
-					, totalClients, averageResponseMs, totalAverageResponeMs, totalEchoCount);
+				printf("Echo Info totalClients: %d, averageResponseMs: %lf, totalEchoCount: %lld\n"
+					, totalClients, averageResponseMs, totalEchoCount);
 			}
 		});
 	}
@@ -97,7 +105,7 @@ public:
 
 int main(int argc, char* argv[])
 {
-	auto [exit, clientCnt, threadCnt, interval] = ProgramOptions(argc, argv);
+	auto [exit, ip, port, clientCnt, threadCnt, interval] = ProgramOptions(argc, argv);
 	if ( exit == 0 )
 	{
 		char input;
@@ -116,5 +124,5 @@ int main(int argc, char* argv[])
 	DummyClientManager<DummyClient> cliManager;
 	auto monitor = std::make_shared<ClientMonitor>(cliManager);
 	monitor->Start();
-	cliManager.StartClients(clientCnt, threadCnt);
+	cliManager.StartClients(ip, port, clientCnt, threadCnt);
 }

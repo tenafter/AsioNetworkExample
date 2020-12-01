@@ -57,9 +57,6 @@ public:
 protected:
 	asio::awaitable<void> MainLoop()
 	{
-		//int frameMs = 1000 / 20;
-		int frameMs = 1;
-
 		auto prevTime = system_clock::now();
 		while ( socket.is_open() == true )
 		{
@@ -70,11 +67,15 @@ protected:
 			{
 				break;
 			}
-			co_await DoZoneAction();//DoEcho();
+			co_await DoEcho();
 		}
 		co_return;
 	}
 
+	/// <summary>
+	/// 에코 패킷을 전송함
+	/// </summary>
+	/// <returns></returns>
 	asio::awaitable<void> DoEcho()
 	{
 		Packet::EchoTestReq packet;
@@ -86,6 +87,10 @@ protected:
 		co_await WriteDataAsync<Packet::EchoTestReq>(std::move(packet));
 	}
 
+	/// <summary>
+	/// 인증 패킷을 전송함
+	/// </summary>
+	/// <returns></returns>
 	asio::awaitable<void> DoZoneAction()
 	{
 		Packet::AuthReq packet;

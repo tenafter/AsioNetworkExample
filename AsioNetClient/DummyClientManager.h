@@ -45,12 +45,12 @@ private:
 			clientCount += count;
 		}
 
-		void Run()
+		void Run(const std::string_view serverIp, const uint16_t serverPort)
 		{
 			for ( int i = 0; i < clientCount; ++i )
 			{
 				clients.emplace_back(std::make_unique<TClient>(*ioc));
-				clients.back()->Connect();
+				clients.back()->Connect(serverIp, serverPort);
 				std::this_thread::sleep_for(1ms);
 			}
 			workThread = std::thread([this] ()
@@ -74,8 +74,15 @@ public:
 	/// </summary>
 	/// <param name="clientCount">실행할 클라이언트 개수</param>
 	/// <param name="threadCount">클라이언트 실행에 적용할 스레드 개수</param>
-	void StartClients(const int clientCount, const int threadCount)
+	void StartClients(const std::string_view serverIp, const uint16_t serverPort, const int clientCount, const int threadCount)
 	{
+		if ( serverIp.empty() )
+		{
+			std::cerr << " StartClients() -> 함수 인자 오류 : 서버의 아이피가 빈 문자열임";
+			return;
+		}
+
+
 		if ( clientCount == 0 || threadCount == 0 || clientCount < threadCount )
 		{
 			std::cerr << " StartClients() -> 함수 인자 오류 : clientCount == 0 || threadCount == 0 || clientCount < threadCount";
@@ -92,7 +99,7 @@ public:
 
 		for ( auto& group : groups )
 		{
-			group->Run();
+			group->Run(serverIp, serverPort);
 		}
 	}
 

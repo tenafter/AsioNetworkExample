@@ -2,9 +2,9 @@
 #include "TcpClient.h"
 #include "ClientControllerMap.h"
 
-void TcpClient::Connect()
+void TcpClient::Connect(const std::string_view ip, const uint16_t port)
 {
-	asio::ip::tcp::endpoint endpoint(asio::ip::address::from_string("127.0.0.1"), 43234);
+	asio::ip::tcp::endpoint endpoint(asio::ip::address::from_string(ip.data()), port);
 	socket.async_connect(endpoint,
 		[this] (const boost::system::error_code& error)
 	{

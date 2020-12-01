@@ -49,7 +49,7 @@ public:
 	virtual ~TcpClient()
 	{}
 
-	void Connect();
+	void Connect(const std::string_view ip, const uint16_t port);
 
 	void Close();
 };
