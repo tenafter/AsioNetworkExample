@@ -13,9 +13,6 @@
     <ClCompile Include="TcpSession.cpp">
       <Filter>Network</Filter>
     </ClCompile>
-    <ClCompile Include="IocChannel.cpp">
-      <Filter>Channel</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Constants.h" />

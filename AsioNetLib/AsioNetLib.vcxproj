@@ -159,7 +159,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="IocChannel.cpp" />
     <ClCompile Include="SessionManager.cpp" />
     <ClCompile Include="TcpServer.cpp" />
     <ClCompile Include="TcpClient.cpp" />
