@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="TcpClient.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="SessionManager.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="TcpServer.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="TcpSession.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="IocChannel.cpp">
+      <Filter>Channel</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Constants.h" />
+    <ClInclude Include="TcpSession.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="SessionManager.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="TcpServer.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketParser.h">
+      <Filter>Packet</Filter>
+    </ClInclude>
+    <ClInclude Include="TcpClient.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketUtil.h">
+      <Filter>Packet</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientControllerMap.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerControllerMap.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="IocChannelManager.h">
+      <Filter>Channel</Filter>
+    </ClInclude>
+    <ClInclude Include="IocChannel.h">
+      <Filter>Channel</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Channel">
+      <UniqueIdentifier>{9a96dcda-78a5-4183-8854-ad8c001f5700}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Packet">
+      <UniqueIdentifier>{c78164ac-dee7-46df-8ddd-ef46cb6d06e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network">
+      <UniqueIdentifier>{f9236f3c-6f18-4280-901f-a3f118fb4a20}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

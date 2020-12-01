@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="AsioNetServerMain.cpp" />
+    <ClCompile Include="StatusMonitor.cpp">
+      <Filter>StatusMonitor</Filter>
+    </ClCompile>
+    <ClCompile Include="AuthContoroller.cpp">
+      <Filter>Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="AuthEmulator.cpp">
+      <Filter>Backend</Filter>
+    </ClCompile>
+    <ClCompile Include="EchoTestController.cpp">
+      <Filter>Controller</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="StatusMonitor">
+      <UniqueIdentifier>{63b3251b-d203-48e0-a39a-2d5b27af4106}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controller">
+      <UniqueIdentifier>{f52c6a36-ed97-470f-9ab8-fe823d8a2a98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Backend">
+      <UniqueIdentifier>{dbff79cf-9355-4236-b174-12a124c42f13}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="StatusMonitor.h">
+      <Filter>StatusMonitor</Filter>
+    </ClInclude>
+    <ClInclude Include="AuthContoroller.h">
+      <Filter>Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="AuthEmulator.h">
+      <Filter>Backend</Filter>
+    </ClInclude>
+    <ClInclude Include="EchoTestController.h">
+      <Filter>Controller</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

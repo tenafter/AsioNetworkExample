@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="AsioNetClientMain.cpp" />
+    <ClCompile Include="AuthContoroller.cpp">
+      <Filter>Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="EchoTestController.cpp">
+      <Filter>Controller</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Controller">
+      <UniqueIdentifier>{df18f63f-8f31-404e-80b7-5985b9137ef4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DummyClient.h" />
+    <ClInclude Include="DummyClientManager.h" />
+    <ClInclude Include="AuthContoroller.h">
+      <Filter>Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="EchoTestController.h">
+      <Filter>Controller</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
