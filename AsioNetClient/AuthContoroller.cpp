@@ -4,9 +4,8 @@
 #include <ClientControllerMap.h>
 #include <PacketUtil.h>
 #include <PacketDefine.h>
-#include <AsioNetClient\DummyClient.h>
-#include <AsioNetCommon\CommonConstants.h>
-
+#include <CommonConstants.h>
+#include "DummyClient.h"
 
 asio::awaitable<void> AuthController::AuthRes(TcpClient& client, msgpack::sbuffer& dataBuf)
 {

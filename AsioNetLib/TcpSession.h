@@ -48,7 +48,7 @@ public:
 	{
 		// 코루틴이 실행되는 동안 인스턴스를 유지하기 위해 shared_from_this()를 사용함
 		asio::co_spawn(socket.get_executor(),
-			[self = shared_from_this()]{return self->ReadAsyncWaitLoop();},
+			[self = shared_from_this()]{return self->ReadAsyncWaitLoop(); },
 			asio::detached);
 	}
 

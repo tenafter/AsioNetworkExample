@@ -16,10 +16,10 @@ namespace Packet
 	/// <param name="size">패킷데이터의 크기</param>
 	/// <returns></returns>
 	template <typename TPacket>
-	inline static auto Deserialize( const char* buffer, const size_t size )
+	inline static auto Deserialize(const char* buffer, const size_t size)
 	{
 		PACKET_DATA_TYPE_CHECK<TPacket>();
-		msgpack::object_handle handle = msgpack::unpack( buffer, size );
+		msgpack::object_handle handle = msgpack::unpack(buffer, size);
 		return handle.get().as<TPacket>();
 	}
 
@@ -32,18 +32,18 @@ namespace Packet
 	/// <param name="packetData">패킷데이터 구조체의 인스턴스</param>
 	/// <returns></returns>
 	template <typename TPacket>
-	inline static const size_t Serialize( char* packetBuf, TPacket&& packetData )
+	inline static const size_t Serialize(char* packetBuf, TPacket&& packetData)
 	{
 		PACKET_DATA_TYPE_CHECK<TPacket>();
-		msgpack::sbuffer dataBuf( PACKET_SIZE_MAX );
-		msgpack::pack( dataBuf, packetData );
+		msgpack::sbuffer dataBuf(PACKET_SIZE_MAX);
+		msgpack::pack(dataBuf, packetData);
 
 		Header header;
-		std::memcpy( header.start, STARTER, STARTER_SIZE );
-		header.packetType = static_cast< short >( packetData.packetType );
-		header.dataSize = static_cast< uint16_t >( dataBuf.size() );
-		std::memcpy( static_cast< void* >( packetBuf ), &header, HEADER_SIZE );
-		std::memcpy( packetBuf + sizeof( Header ), dataBuf.data(), dataBuf.size() );
+		std::memcpy(header.start, STARTER, STARTER_SIZE);
+		header.packetType = static_cast<short>(packetData.packetType);
+		header.dataSize = static_cast<uint16_t>(dataBuf.size());
+		std::memcpy(static_cast<void*>(packetBuf), &header, HEADER_SIZE);
+		std::memcpy(packetBuf + sizeof(Header), dataBuf.data(), dataBuf.size());
 		return HEADER_SIZE + dataBuf.size();
 	}
 
@@ -52,10 +52,10 @@ namespace Packet
 	/// </summary>
 	/// <param name="packetBuf">패킷 버퍼</param>
 	/// <returns>패킷 헤더</returns>
-	inline static Header ReadHeader( const char* packetBuf )
+	inline static Header ReadHeader(const char* packetBuf)
 	{
 		Header header;
-		std::memcpy( &header, packetBuf, HEADER_SIZE );
+		std::memcpy(&header, packetBuf, HEADER_SIZE);
 		return header;
 	}
 }
