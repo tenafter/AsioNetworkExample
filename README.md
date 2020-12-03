@@ -27,10 +27,10 @@
 ## 실행 예
 - 서버
   - 예) 43234 포트로 서버를 실행하되, 억셉트/송수신 io에는 1개의 스레드를 할당하고, 채널(컨텐츠)에는 2개의 스레드를 할당함
-  - AsioNetServer.exe --port 43234 --ioThreadCnt 1 --channelThreadCnt 2
+    - AsioNetServer.exe --port 43234 --ioThreadCnt 1 --channelThreadCnt 2
 - 클라이언트
   - 예) 100개의 더미 클라이언트를 2개의 스레드로 실행하여, 200ms 마다 에코메시지를 보냄
-  - AsioNetClient.exe --ip 127.0.0.1 --port 43234 --clientCnt 400 --threadCnt 4 --interval 200
+    - AsioNetClient.exe --ip 127.0.0.1 --port 43234 --clientCnt 400 --threadCnt 4 --interval 200
  
 
 ## 프로젝트 구조
